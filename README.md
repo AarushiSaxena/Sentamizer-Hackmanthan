@@ -25,7 +25,7 @@ Takes a keyword from us and tells us the the majority view of the people on that
 Takes data from social media posts in real time and then shows the intentions of the writer as the result of the data analysis.
 
 
-Created By-
-Abhisht Dixit
-Aarushi Saxena
+Created By- </br>
+Abhisht Dixit </br>
+Aarushi Saxena </br>
 Danya
