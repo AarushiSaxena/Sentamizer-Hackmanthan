@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Text Sentiment Analysis</h1>
+  &nbsp; &nbsp;  &nbsp; &nbsp; <a href="https://pr0xeu.csb.app/"><button class="button1">
+    <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+    <span>Back</span>
+  </button></a><br><br>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input class="form__input" type="text" name="exper"  id="exper" placeholder="Text" required="required" />
+      
+      <br><br>
+      <button class="primary-button" type="submit">
+        <span class="span1">PREDICT</span>
+      </button>
+    </form>
+
+   <br>
+   <br>
+   <p>{{ prediction_tex }}</p>
+
+ </div>
+
+<style>
+
+  body {
+    background: rgb(250,225,172);
+background: linear-gradient(90deg, rgba(250,225,172,1) 4%, rgba(251,175,131,1) 100%);
+  }
+  h1{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+  }
+  p{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem; ;
+  }
+  .form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 90%;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
+}
+/* .primary-button {
+ font-family: 'Ropa Sans', sans-serif;
+     font-family: 'Valorant', sans-serif; 
+ color: white;
+ cursor: pointer;
+ font-size: 25px;
+ letter-spacing: 0.05rem;
+ border: 1px solid #17232f;
+ padding: 0.8rem 2.1rem;
+ margin-left: 45%;
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23FF4655 /* fill: %230E1822;  %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+ background-color: #12202d;
+ background-size: 200%;
+ background-position: 200%;
+ background-repeat: no-repeat;
+ transition: 0.2s ease-in-out;
+ transition-property: background-position, border, color;
+ position: relative;
+ z-index: 1;
+}
+
+.primary-button:hover {
+ border: 1px solid #FF4655;
+ color: rgb(255, 255, 255);
+ background-position: 40%;
+}
+
+.primary-button:before {
+ content: "";
+ position: absolute;
+ background-color: #0E1822;
+ width: 0.2rem;
+ height: 0.2rem;
+ top: -1px;
+ left: -1px;
+ transition: background-color 0.15s ease-in-out;
+}
+
+.primary-button:hover:before {
+ background-color: white;
+}
+
+.primary-button:hover:after {
+ background-color: white;
+}
+
+.primary-button:after {
+ content: "";
+ position: absolute;
+ background-color: #FF4655;
+ width: 0.3rem;
+ height: 0.3rem;
+ bottom: -1px;
+ right: -1px;
+ transition: background-color 0.15s ease-in-out;
+} */
+
+/* From uiverse.io by @barisdogansutcu */
+/* From uiverse.io by @Jedi-hongbin */
+.button1 {
+ display: flex;
+ height: 3em;
+ width: 100px;
+ align-items: center;
+ justify-content: center;
+ background-color: #eeeeee4b;
+ border-radius: 7px;
+ margin-left: 4em;
+ letter-spacing: 1px;
+ transition: all 0.2s linear;
+ cursor: pointer;
+ border: none;
+ background: #fff;
+}
+
+.button1 > svg {
+ margin-right: 5px;
+ margin-left: 5px;
+ font-size: 20px;
+ transition: all 0.4s ease-in;
+}
+
+.button1:hover > svg {
+ font-size: 1.2em;
+ transform: translateX(-5px);
+}
+
+.button1:hover {
+ box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+ transform: translateY(-2px);
+}
+
+.primary-button {
+ border: none;
+ position: relative;
+ text-align: center;
+ align-items: center;
+ align-self: auto;
+ margin-left: 43%;
+ width: 200px;
+ height: 73px;
+ padding: 0;
+ z-index: 2;
+ -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ -webkit-mask-size: 100%;
+ cursor: pointer;
+ background-color: transparent;
+ transform: translateY(8px)
+}
+
+.primary-button:after {
+ content: '';
+ position: absolute;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ box-shadow: 0px 0 0 0 white;
+ transition: all 2s ease;
+}
+
+.primary-button:hover:after {
+ box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.primary-button .span1 {
+ position: absolute;
+ width: 100%;
+ font-size: 17px;
+ font-weight: 100;
+ left: 50%;
+ text-align: center;
+ align-items: center;
+ align-content: center;
+ top: 39%;
+ letter-spacing: 3px;
+ text-align: center;
+ transform: translate(-50%,-50%);
+ color: black;
+ transition: all 2s ease;
+}
+
+.primary-button:hover .span1 {
+ color: white;
+}
+
+.primary-button:before {
+ content: '';
+ position: absolute;
+ width: 0;
+ height: 100%;
+ background-color: rgb(10, 10, 10);
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ transition: all 1s ease;
+}
+
+.primary-button:hover:before {
+ width: 100%;
+}
+
+
+
+</style>
+</body>
+</html>
