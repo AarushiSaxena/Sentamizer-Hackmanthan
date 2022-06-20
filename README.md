@@ -1,6 +1,6 @@
 # Sentamizer-Hackmanthan
 
-The application provides the user with the feature of recognizing the tone of social media posts and it accurately identifies when the posts become inflammatory and hateful, thus pin-pointing the bullies online.
+The application provides the user with the feature of recognizing the tone of social media posts and it accurately identifies when the posts become inflammatory and hateful, thus pin-pointing the bullies online. </ br>
 https://pr0xeu.csb.app/
 
 ## Teck Stack
