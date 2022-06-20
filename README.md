@@ -4,9 +4,10 @@ The application provides the user with the feature of recognizing the tone of so
 
 ## Technologies
 
-We have used flask to deploy the application. The features make use of sentiment analysis, i.e. NLP to systematically identify, extract and quantify the different states of the content into categories like strongly positive, weakly positive, neutral, weakly negative and strongly negative.
-newspaper is used to extract and curate articles available online.
-Libraries like textblob, matplotlib, numpy has been used to process the contents.
+1. We have used flask to deploy the application. 
+2. The features make use of sentiment analysis, i.e. NLP to systematically identify, extract and quantify the different states of the content into categories like strongly positive, weakly positive, neutral, weakly negative and strongly negative.
+3. newspaper is used to extract and curate articles available online.
+4. Libraries like textblob, matplotlib, numpy has been used to process the contents.
 
 ## Keyword Sentiment Analysis
 Takes a keyword from us and tells us the the majority view of the people on that topic. 
